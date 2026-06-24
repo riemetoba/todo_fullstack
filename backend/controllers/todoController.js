@@ -11,8 +11,12 @@ const createTodo = (req, res)=>{
 
 todo.save()
 
-
-
+res.send({
+    success: true,
+    message: "todo created"
+})
 
 }
+
+module.exports = {createTodo}
 
