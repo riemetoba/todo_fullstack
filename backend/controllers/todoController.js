@@ -25,5 +25,14 @@ res.send({
 
 }
 
-module.exports = {createTodo}
+const allTodos = async (req, res) =>{
+   let data = await Todo.find({})
+   res.send({
+    success: true,
+    message: "Todo collected",
+    data: data
+   })
+}
+
+module.exports = {createTodo, allTodos}
 

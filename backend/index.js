@@ -18,6 +18,7 @@ mongoose
   });
 
 app.post("/create/todo", createTodo)
+app.post("/allTodos", allTodos)
 
 app.listen(5000,()=>{
     console.log("server is running");
