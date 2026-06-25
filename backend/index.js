@@ -1,12 +1,10 @@
 const express = require("express")
 const app = express()
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+const { createTodo } = require("./controllers/todoController");
 
+app.use(express.json())
 
-
-
-
-app.post("/create/todo")
 
 
 mongoose
@@ -16,6 +14,8 @@ mongoose
   .then(() => {
     console.log("Database Connected Successfully");
   });
+
+app.post("/create/todo", createTodo)
 
 app.listen(5000,()=>{
     console.log("server is running");
