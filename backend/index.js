@@ -1,7 +1,7 @@
 const express = require("express")
 const app = express()
 const mongoose = require("mongoose");
-const { createTodo } = require("./controllers/todoController");
+const { createTodo, allTodos } = require("./controllers/todoController");
 const cors = require ("cors")
 
 app.use(express.json())
@@ -18,7 +18,7 @@ mongoose
   });
 
 app.post("/create/todo", createTodo)
-app.post("/allTodos", allTodos)
+app.get("/allTodos", allTodos)
 
 app.listen(5000,()=>{
     console.log("server is running");

@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 function App() {
   let [task, setTask] = useState("");
   let [priority, setPriority] = useState("");
   let [info, setInfo] = useState({});
+  let [todosData, setTodosData] = useState([])
 
   let handleClick = async () => {
     let data = await axios.post("http://localhost:5000/create/todo", {
@@ -20,6 +21,14 @@ function App() {
   let handleSelectOption = (e) => {
     setPriority(e.target.value);
   };
+
+  useEffect(() =>{
+   async function todos(){
+    let todosData = await axios.get("http://localhost:5000/allTodos")
+    console.log(todosData.data);
+   }
+   todos()
+  }, [])
   return (
     <>
       <h1>Todo</h1>
