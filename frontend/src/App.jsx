@@ -5,7 +5,7 @@ function App() {
   let [task, setTask] = useState("");
   let [priority, setPriority] = useState("");
   let [info, setInfo] = useState({});
-  let [todosData, setTodosData] = useState([])
+  let [data, setData] = useState([]);
 
   let handleClick = async () => {
     let data = await axios.post("http://localhost:5000/create/todo", {
@@ -13,6 +13,8 @@ function App() {
       priority: priority,
     });
     setInfo(data.data);
+    let todosData = await axios.get("http://localhost:5000/allTodos");
+    setData(todosData.data.data);
   };
   let handleTaskChange = (e) => {
     setTask(e.target.value);
@@ -22,13 +24,26 @@ function App() {
     setPriority(e.target.value);
   };
 
-  useEffect(() =>{
-   async function todos(){
-    let todosData = await axios.get("http://localhost:5000/allTodos")
-    console.log(todosData.data);
-   }
-   todos()
-  }, [])
+  useEffect(() => {
+    async function todos() {
+      let todosData = await axios.get("http://localhost:5000/allTodos");
+      setData(todosData.data.data);
+    }
+    todos();
+  }, []);
+  let handleDelete = async (id) => {
+    let deleteTask = await axios.delete(`http://localhost:5000/delete/${id}`, {
+      task: task,
+      priority: priority,
+    });
+    console.log(deleteTask);
+    let todosData = await axios.get("http://localhost:5000/allTodos");
+    setData(todosData.data.data);
+  };
+
+  const handleEdit = ()=>{
+    setTask()
+  }
   return (
     <>
       <h1>Todo</h1>
@@ -44,6 +59,18 @@ function App() {
         <option value="low">low</option>
       </select>
       <button onClick={handleClick}>Submit</button>
+      <ul>
+        {data.map((item) => (
+          <>
+            <li>
+              {item.task}============={item.priority}=============={item.status}
+            </li>
+            <button onClick={() => handleDelete(item._id)}>Delete</button>
+            <button onClick={() => handleEdit(item)}>Edit</button>
+
+          </>
+        ))}
+      </ul>
     </>
   );
 }
