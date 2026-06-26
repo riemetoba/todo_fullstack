@@ -1,6 +1,5 @@
 const Todo = require ("../models/todoModel")
 
-
 const createTodo = (req, res)=>{
     const {task, status, priority} = req.body
 
@@ -52,5 +51,6 @@ let todoDelete = async(req, res) =>{
         message: "Todo update"
       })
  }
+
 module.exports = {createTodo, allTodos, todoDelete, todoUpdate}
 
