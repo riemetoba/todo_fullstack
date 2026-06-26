@@ -42,7 +42,15 @@ let todoDelete = async(req, res) =>{
         success: true,
         message: "Todo deleted"
       })
+     
 }
-
-module.exports = {createTodo, allTodos, todoDelete}
+ let todoUpdate = async (req, res) =>{
+    const {id} = req.params
+    let deleteTask = await Todo.findByIdAndUpdate({_id:id}, req.body)
+    res.send({
+        success: true,
+        message: "Todo update"
+      })
+ }
+module.exports = {createTodo, allTodos, todoDelete, todoUpdate}
 
