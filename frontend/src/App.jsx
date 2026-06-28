@@ -66,7 +66,7 @@ function App() {
   return (
     <>
       <div className="max-w-lg mx-auto p-6">
-        <h1 className="text-2xl font-semibold mb-4">Todo</h1>
+        <h1 className="text-3xl font-semibold mb-4 text-center text-gray-600">TODO</h1>
 
         {info.success ? (
           <p className="mb-3 text-sm text-green-700 bg-green-50 border border-green-200 rounded px-3 py-2">
@@ -103,7 +103,7 @@ function App() {
             </button>
           ) : (
             <button
-              className="px-4 py-2 bg-blue-600 text-white text-sm rounded hover:bg-blue-700"
+              className="px-4 py-2 bg-green-600 text-white text-sm rounded hover:bg-green-700"
               onClick={handleClick}
             >
               Submit
