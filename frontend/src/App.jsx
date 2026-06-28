@@ -1,3 +1,4 @@
+import "./App.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -58,40 +59,81 @@ function App() {
     console.log(data);
     let todosData = await axios.get("http://localhost:5000/allTodos");
     setData(todosData.data.data);
-    setIsUpdate(false)
-    setTask("")
-    setPriority("")
+    setIsUpdate(false);
+    setTask("");
+    setPriority("");
   };
   return (
     <>
-      <h1>Todo</h1>
-      {info.success ? (
-        <p>{info.message}</p>
-      ) : (
-        <p style={{ background: "red" }}>{info.message}</p>
-      )}
-      <input onChange={handleTaskChange} type="text" value={task} />
-      <select onChange={handleSelectOption} value={priority}>
-        <option value="high">high</option>
-        <option value="medium">medium</option>
-        <option value="low">low</option>
-      </select>
-      {isUpdate ? (
-        <button onClick={handleUpdate}>Update</button>
-      ) : (
-        <button onClick={handleClick}>Submit</button>
-      )}
-      <ul>
-        {data.map((item) => (
-          <>
-            <li>
-              {item.task}============={item.priority}=============={item.status}
-            </li>
-            <button onClick={() => handleDelete(item._id)}>Delete</button>
-            <button onClick={() => handleEdit(item)}>Edit</button>
-          </>
-        ))}
-      </ul>
+      <div className="max-w-lg mx-auto p-6">
+        <h1 className="text-2xl font-semibold mb-4">Todo</h1>
+
+        {info.success ? (
+          <p className="mb-3 text-sm text-green-700 bg-green-50 border border-green-200 rounded px-3 py-2">
+            {info.message}
+          </p>
+        ) : (
+          <p className="mb-3 text-sm text-red-700 bg-red-50 border border-red-200 rounded px-3 py-2">
+            {info.message}
+          </p>
+        )}
+
+        <div className="flex gap-2 mb-6">
+          <input
+            className="flex-1 border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+            onChange={handleTaskChange}
+            type="text"
+            value={task}
+          />
+          <select
+            className="border border-gray-300 rounded px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-400"
+            onChange={handleSelectOption}
+            value={priority}
+          >
+            <option value="high">high</option>
+            <option value="medium">medium</option>
+            <option value="low">low</option>
+          </select>
+          {isUpdate ? (
+            <button
+              className="px-4 py-2 bg-yellow-500 text-white text-sm rounded hover:bg-yellow-600"
+              onClick={handleUpdate}
+            >
+              Update
+            </button>
+          ) : (
+            <button
+              className="px-4 py-2 bg-blue-600 text-white text-sm rounded hover:bg-blue-700"
+              onClick={handleClick}
+            >
+              Submit
+            </button>
+          )}
+        </div>
+
+        <ul className="space-y-2">
+          {data.map((item) => (
+            <>
+              <li className="flex items-center gap-2 text-sm text-gray-700">
+                {item.task}============={item.priority}==============
+                {item.status}
+              </li>
+              <button
+                className="text-xs text-red-500 hover:text-red-700"
+                onClick={() => handleDelete(item._id)}
+              >
+                Delete
+              </button>
+              <button
+                className="text-xs text-blue-500 hover:text-blue-700 ml-2"
+                onClick={() => handleEdit(item)}
+              >
+                Edit
+              </button>
+            </>
+          ))}
+        </ul>
+      </div>
     </>
   );
 }
