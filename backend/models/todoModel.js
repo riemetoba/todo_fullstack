@@ -15,6 +15,10 @@ const todoSchema = new Schema({
         type: String,
         enum: ["high", "medium", "low"],
         required: true
+    },
+    createdAt:{
+        type: Date,
+        default: Date.now
     }
 })
 

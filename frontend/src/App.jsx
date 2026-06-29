@@ -66,7 +66,9 @@ function App() {
   return (
     <>
       <div className="max-w-lg mx-auto p-6">
-        <h1 className="text-3xl font-semibold mb-4 text-center text-gray-600">TODO</h1>
+        <h1 className="text-3xl font-semibold mb-4 text-center text-gray-600">
+          TODO
+        </h1>
 
         {info.success ? (
           <p className="mb-3 text-sm text-green-700 bg-green-50 border border-green-200 rounded px-3 py-2">
@@ -117,6 +119,9 @@ function App() {
               <li className="flex items-center gap-2 text-sm text-gray-700">
                 {item.task}============={item.priority}==============
                 {item.status}
+                <span className="text-xs text-gray-400 ml-2">
+                  📅 {new Date(item.createdAt).toLocaleString()}
+                </span>
               </li>
               <button
                 className="text-xs text-red-500 hover:text-red-700"
