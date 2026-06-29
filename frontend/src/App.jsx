@@ -4,7 +4,7 @@ import axios from "axios";
 
 function App() {
   let [task, setTask] = useState("");
-  let [priority, setPriority] = useState("");
+  let [priority, setPriority] = useState("high");
   let [info, setInfo] = useState({});
   let [data, setData] = useState([]);
   let [id, setId] = useState("");
@@ -61,7 +61,7 @@ function App() {
     setData(todosData.data.data);
     setIsUpdate(false);
     setTask("");
-    setPriority("");
+    setPriority("high");
   };
   return (
     <>
