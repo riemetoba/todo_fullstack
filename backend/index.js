@@ -21,8 +21,8 @@ const storage = multer.diskStorage({
   filename: function (req, file, cb) {
     // console.log(file.originalname,Date.now());
     
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, file.fieldname + "-" + uniqueSuffix);
+    const uniqueSuffix = 'img' + '-' + Date.now();
+    cb(null,uniqueSuffix + '-' + file.originalname );
   },
 });
 
@@ -41,6 +41,7 @@ app.post("/create/todo",upload.single("image"), createTodo);
 app.get("/allTodos", allTodos);
 app.delete("/delete/:id", todoDelete);
 app.post("/update/:id", todoUpdate);
+app.use('/uploads', express.static('uploads'));
 
 app.listen(5000, () => {
   console.log("server is running");

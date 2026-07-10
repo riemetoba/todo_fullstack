@@ -2,6 +2,8 @@ const Todo = require ("../models/todoModel")
 
 const createTodo = (req, res)=>{
     const {task, status, priority} = req.body
+    console.log(req.file.path);
+    
 
     if(!task || !priority){
      return res.send({
