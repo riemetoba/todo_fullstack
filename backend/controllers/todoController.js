@@ -33,7 +33,6 @@ const allTodos = async (req, res) =>{
    })
 }
 
-
 let todoDelete = async(req, res) =>{
     const {id} = req.params
       await Todo.findByIdAndDelete(id)
@@ -41,7 +40,7 @@ let todoDelete = async(req, res) =>{
         success: true,
         message: "Todo deleted"
       })
-     
+
 }
  let todoUpdate = async (req, res) =>{
     const {id} = req.params
@@ -53,4 +52,5 @@ let todoDelete = async(req, res) =>{
  }
 
 module.exports = {createTodo, allTodos, todoDelete, todoUpdate}
+
 
