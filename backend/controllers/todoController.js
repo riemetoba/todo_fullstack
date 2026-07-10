@@ -1,7 +1,7 @@
 const Todo = require ("../models/todoModel")
 
 const createTodo = (req, res)=>{
-    const {task, status, priority} = req.body
+    const {task, status, priority, path} = req.body
     console.log(req.file.path);
     
 
@@ -14,7 +14,8 @@ const createTodo = (req, res)=>{
 
     const todo = new Todo({
     task: task,
-    priority: priority
+    priority: priority,
+    path: req.file.path
 })
 
 todo.save()

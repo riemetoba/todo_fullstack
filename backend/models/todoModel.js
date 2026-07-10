@@ -19,6 +19,9 @@ const todoSchema = new Schema({
     createdAt:{
         type: Date,
         default: Date.now
+    },
+    path:{
+        type: String
     }
 })
 
