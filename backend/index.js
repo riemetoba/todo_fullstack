@@ -10,6 +10,8 @@ const {
 const cors = require("cors");
 const multer = require("multer");
 
+
+app.use('/uploads', express.static('uploads'));
 app.use(express.json());
 app.use(cors());
 
@@ -41,7 +43,7 @@ app.post("/create/todo",upload.single("image"), createTodo);
 app.get("/allTodos", allTodos);
 app.delete("/delete/:id", todoDelete);
 app.post("/update/:id", todoUpdate);
-app.use('/uploads', express.static('uploads'));
+
 
 app.listen(5000, () => {
   console.log("server is running");
