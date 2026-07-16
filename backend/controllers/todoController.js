@@ -5,7 +5,7 @@ const createTodo = (req, res) => {
   console.log(req.file.path);
 
   if (!task || !priority) {
-    return res.send({
+    return res.json({
       success: false,
       message: "Please provide both task and priority.",
     });
@@ -20,7 +20,7 @@ const createTodo = (req, res) => {
 
   todo.save();
 
-  res.send({
+  res.json({
     success: true,
     message: "todo created",
   });
@@ -30,7 +30,7 @@ const createTodo = (req, res) => {
 const allTodos = async (req, res) => {
   try {
     let data = await Todo.find({});
-    res.send({
+    res.json({
       success: true,
       message: "Todo collected",
       data: data,
@@ -45,7 +45,7 @@ let todoDelete = async (req, res) => {
   try {
     const { id } = req.params;
     let deleteTodo = await Todo.findByIdAndDelete(id);
-    res.send({
+    res.json({
       success: true,
       message: "Todo deleted",
     });
@@ -59,7 +59,7 @@ let todoUpdate = async (req, res) => {
   try {
     const { id } = req.params;
     let deleteTask = await Todo.findByIdAndUpdate({ _id: id }, req.body);
-    res.send({
+    res.json({
       success: true,
       message: "Todo update",
     });
