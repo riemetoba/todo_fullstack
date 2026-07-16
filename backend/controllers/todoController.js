@@ -20,7 +20,7 @@ const createTodo = (req, res) => {
 
   todo.save();
 
-  res.status(201).json({
+ return res.status(201).json({
     success: true,
     message: "todo created",
   });
@@ -30,7 +30,7 @@ const createTodo = (req, res) => {
 const allTodos = async (req, res) => {
   try {
     let data = await Todo.find({});
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "Todo collected",
       data: data,
@@ -49,7 +49,7 @@ let todoDelete = async (req, res) => {
   try {
     const { id } = req.params;
     let deleteTodo = await Todo.findByIdAndDelete(id);
-    res.json({
+   return res.json({
       success: true,
       message: "Todo deleted",
     });
@@ -63,7 +63,7 @@ let todoUpdate = async (req, res) => {
   try {
     const { id } = req.params;
     let deleteTask = await Todo.findByIdAndUpdate({ _id: id }, req.body);
-    res.json({
+   return res.json({
       success: true,
       message: "Todo update",
     });

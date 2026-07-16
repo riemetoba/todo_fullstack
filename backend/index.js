@@ -7,8 +7,8 @@ const {
   todoUpdate,
 } = require("./controllers/todoController");
 const cors = require("cors");
-const multer = require("multer");
 const dbConnection = require("./config/databaseConfig");
+const upload = require ("./utils/storage")
 
 // ============ middleware ==============
 
@@ -20,21 +20,7 @@ app.use(cors());
 
 dbConnection();
 
-// ==============================
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "./uploads");
-  },
-  filename: function (req, file, cb) {
-    // console.log(file.originalname,Date.now());
-
-    const uniqueSuffix = "img" + "-" + Date.now();
-    cb(null, uniqueSuffix + "-" + file.originalname);
-  },
-});
-
-const upload = multer({ storage: storage });
-// ==============================
+// ====================
 
 app.post("/create/todo", upload.single("image"), createTodo);
 app.get("/allTodos", allTodos);
