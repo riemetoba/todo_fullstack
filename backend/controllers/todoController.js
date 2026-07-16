@@ -1,7 +1,7 @@
 const Todo = require("../models/todoModel");
 
 const createTodo = (req, res) => {
-  const { task, status, priority, path } = req.body;
+  const { task, priority, path } = req.body;
   console.log(req.file.path);
 
   if (!task || !priority) {
@@ -44,7 +44,7 @@ const allTodos = async (req, res) => {
 let todoDelete = async (req, res) => {
   try {
     const { id } = req.params;
-    await Todo.findByIdAndDelete(id);
+    let deleteTodo = await Todo.findByIdAndDelete(id);
     res.send({
       success: true,
       message: "Todo deleted",
