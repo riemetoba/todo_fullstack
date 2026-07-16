@@ -37,7 +37,10 @@ mongoose
   )
   .then(() => {
     console.log("Database Connected Successfully");
-  });
+  }).catch(error =>{
+    console.log(error);
+    
+  })
 
 app.post("/create/todo",upload.single("image"), createTodo);
 app.get("/allTodos", allTodos);
