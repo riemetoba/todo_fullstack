@@ -5,12 +5,12 @@ const createTodo = (req, res) => {
   console.log(req.file.path);
 
   if (!task || !priority) {
-    return res.json({
+    return res.status(400).json({
       success: false,
       message: "Please provide both task and priority.",
     });
   }
-// ====================== 
+  // ======================
 
   const todo = new Todo({
     task: task,
@@ -20,7 +20,7 @@ const createTodo = (req, res) => {
 
   todo.save();
 
-  res.json({
+  res.status(201).json({
     success: true,
     message: "todo created",
   });
@@ -30,13 +30,17 @@ const createTodo = (req, res) => {
 const allTodos = async (req, res) => {
   try {
     let data = await Todo.find({});
-    res.json({
+    res.status(200).json({
       success: true,
       message: "Todo collected",
       data: data,
     });
   } catch (error) {
     console.log(error);
+    res.status(500).json({
+      success: false,
+      error: error,
+    });
   }
 };
 // ========================
