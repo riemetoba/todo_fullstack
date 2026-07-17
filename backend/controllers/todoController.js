@@ -49,7 +49,7 @@ let todoDelete = async (req, res) => {
   try {
     const { id } = req.params;
     let deleteTodo = await Todo.findByIdAndDelete(id);
-   return res.json({
+   return res.status(200).json({
       success: true,
       message: "Todo deleted",
     });
@@ -63,7 +63,7 @@ let todoUpdate = async (req, res) => {
   try {
     const { id } = req.params;
     let deleteTask = await Todo.findByIdAndUpdate({ _id: id }, req.body);
-   return res.json({
+   return res.status(200).json({
       success: true,
       message: "Todo update",
     });
