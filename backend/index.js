@@ -16,7 +16,7 @@ dbConnection();
 
 // ====================
 
-app.use("/", todoRoutes);
+app.use("/", todoRoute);
 
 app.listen(5000, () => {
   console.log("server is running");
